@@ -1,0 +1,296 @@
+<!doctype html>
+<html lang="id">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Untuk Alice 💌</title>
+  <meta name="description" content="Sebuah pesan tulus untuk Alice — maaf dan permohonan kesempatan lagi.">
+  <style>
+    /* ---------- basic reset ---------- */
+    *{box-sizing:border-box;margin:0;padding:0}
+    html,body{height:100%}
+    body{
+      font-family: Inter, "Poppins", system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+      background: linear-gradient(135deg,#fff0f4 0%, #e6fbff 100%);
+      color:#1f1f1f;
+      display:flex;align-items:center;justify-content:center;
+      padding:24px;
+      -webkit-font-smoothing:antialiased;
+    }
+
+    /* ---------- container ---------- */
+    .wrap{
+      width:100%;
+      max-width:960px;
+      background: linear-gradient(180deg, rgba(255,255,255,0.95), rgba(255,255,255,0.85));
+      border-radius:20px;
+      box-shadow: 0 20px 50px rgba(20,10,30,0.08);
+      overflow:hidden;
+      position:relative;
+      display:grid;
+      grid-template-columns: 420px 1fr;
+    }
+
+    /* left: info card */
+    .card-left{
+      padding:36px 28px;
+      background:
+        radial-gradient(600px 200px at 10% 10%, rgba(255,110,180,0.06), transparent 10%),
+        linear-gradient(180deg, rgba(255,255,255,0.6), rgba(255,255,255,0.3));
+      display:flex;flex-direction:column;gap:18px;
+    }
+    .logo{
+      display:flex;gap:12px;align-items:center;
+    }
+    .logo .dot{
+      width:48px;height:48px;border-radius:12px;background:linear-gradient(45deg,#ff7eb3,#ff4081);
+      display:flex;align-items:center;justify-content:center;color:#fff;font-weight:700;font-size:18px;box-shadow:0 6px 18px rgba(255,64,129,0.18);
+    }
+    .logo h1{font-size:18px;color:#ff2d75}
+
+    .intro{font-size:14px;color:#444;line-height:1.6}
+    .from{
+      margin-top:6px;font-size:13px;color:#666;
+    }
+
+    .controls{display:flex;gap:10px;flex-wrap:wrap;margin-top:6px}
+    .btn{
+      padding:10px 14px;border-radius:12px;border:0;cursor:pointer;font-weight:700;
+      background:linear-gradient(90deg,#ff6aa7,#ff2d75); color:#fff; box-shadow:0 8px 20px rgba(255,80,140,0.14);
+    }
+    .btn.secondary{
+      background:transparent;color:#ff2d75;border:1px solid rgba(255,45,117,0.12);font-weight:700;
+      box-shadow:none;
+    }
+
+    .hint{font-size:12px;color:#777;margin-top:6px}
+
+    /* right: preview */
+    .card-right{
+      padding:36px 28px;
+      position:relative;
+      display:flex;flex-direction:column;align-items:center;justify-content:center;
+      min-height:420px;
+      overflow:hidden;
+    }
+    .frame{
+      width:100%;
+      max-width:760px;
+      border-radius:18px;
+      padding:36px;
+      text-align:center;
+      background: linear-gradient(180deg, rgba(255,255,255,0.85), rgba(255,255,255,0.70));
+      box-shadow: 0 12px 40px rgba(20,10,30,0.05);
+      position:relative;
+    }
+    .to{color:#ff2d75;font-size:20px;font-weight:800}
+    .title{font-size:28px;margin-top:6px;color:#222}
+    .message{
+      margin-top:18px;font-size:16px;color:#333;line-height:1.7;max-width:720px;margin-left:auto;margin-right:auto;
+      white-space:pre-wrap;
+    }
+    .action{
+      margin-top:24px;
+      display:flex;align-items:center;gap:12px;justify-content:center;
+    }
+    .action .cta{
+      padding:12px 26px;border-radius:40px;border:0;font-weight:800;cursor:pointer;
+      background:linear-gradient(90deg,#ff2d75,#ff77a9);color:#fff;box-shadow:0 10px 30px rgba(255,80,140,0.14);
+      transform-origin:center;
+    }
+    .small-note{font-size:13px;color:#777;margin-top:14px}
+
+    /* flying layer (hearts, butterflies, stickers) */
+    .floating{
+      pointer-events:none;
+      position:absolute;
+      inset:0;
+      overflow:hidden;
+      z-index:9;
+    }
+    .float-item{
+      position:absolute;
+      animation:float-up linear forwards;
+      transform-origin:center;
+      will-change:transform,opacity;
+    }
+    @keyframes float-up{
+      0%{transform:translateY(0) rotate(0deg) scale(0.9); opacity:1}
+      100%{transform:translateY(-900px) rotate(360deg) scale(1.25); opacity:0}
+    }
+
+    /* sparkle */
+    .sparkle{
+      position:absolute;
+      width:10px;height:10px;border-radius:50%;background:radial-gradient(circle, #fff 0%, rgba(255,255,255,0.5) 60%);
+      filter:drop-shadow(0 2px 6px rgba(255,200,230,0.25));
+      animation:twinkle 2.2s ease-in-out infinite;
+      opacity:0;
+    }
+    @keyframes twinkle{
+      0%{opacity:0; transform:scale(0.6)}
+      50%{opacity:1; transform:scale(1.2)}
+      100%{opacity:0; transform:scale(0.6)}
+    }
+
+    /* responsive */
+    @media (max-width:880px){
+      .wrap{grid-template-columns:1fr; padding:12px}
+      .card-left{order:2}
+      .card-right{order:1;padding:20px}
+    }
+  </style>
+</head>
+<body>
+
+  <div class="wrap" role="main" aria-labelledby="pageTitle">
+    <!-- LEFT -->
+    <section class="card-left" aria-label="Tentang pesan">
+      <div class="logo" aria-hidden="true">
+        <div class="dot">♥</div>
+        <h1 id="pageTitle">Untuk Alice — Pesan Tulus</h1>
+      </div>
+
+      <div class="intro" id="introText">
+        Alice, halaman ini kubuat khusus untukmu. Isinya pesan maaf dari hati, janji untuk berubah,
+        dan harapan agar kamu memberi aku kesempatan lagi. Sentuh tombol di bawah kalau kamu mau dengar.
+      </div>
+
+      <div class="from" id="fromText">Dari: <strong id="senderName">[Nama Kamu]</strong></div>
+
+      <div class="controls" aria-hidden="false">
+        <button class="btn" id="playBtn" title="Putar/Stop musik">▶️ Putar Musik</button>
+        <button class="btn secondary" id="heartsBtn" title="Lepaskan hati">💞 Lepaskan Hati</button>
+        <button class="btn secondary" id="butterBtn" title="Lepaskan kupu-kupu">🦋 Lepaskan Kupu-kupu</button>
+        <button class="btn" id="downloadBtn" title="Download halaman ini sebagai file HTML">⬇️ Download</button>
+      </div>
+
+      <div class="hint">Tip: Klik "Lepaskan Hati" atau "Lepaskan Kupu-kupu" untuk efek hidup. Kamu bisa ubah nama pengirim sebelum download.</div>
+    </section>
+
+    <!-- RIGHT -->
+    <section class="card-right" aria-label="Pratinjau pesan">
+      <div class="floating" id="floatingLayer" aria-hidden="true"></div>
+
+      <div class="frame" id="frame">
+        <div class="to" id="toText">Untuk Alice</div>
+        <div class="title" id="titleText">Maafkan Aku</div>
+
+        <div class="message" id="msgText">
+Alice…  
+w tahu u kecewa , ga seharusnya wa kek gt seharusnya w hrs bs jaga u 
+ho wa  kesempatan untuk buktiin kalau w gk kek gitu a w janji :(  
+W emcai a cumik w tiam sio u terus tiap malam , kek ai mai sio pun pasti sio terus :(
+        </div>
+
+        <div class="action">
+          <button class="cta" id="forAliceBtn">💗 Untuk Alice</button>
+        </div>
+
+        <div class="small-note">Kirim ini kepada Alice sebagai tanda penyesalan dan janji untuk berubah.</div>
+      </div>
+    </section>
+  </div>
+
+  <!-- audio (public domain / free use clip) -->
+  <audio id="bgAudio" loop preload="auto">
+    <source src="https://cdn.pixabay.com/download/audio/2022/03/22/audio_3d2d49f34a.mp3?filename=sad-romantic-piano-ambient-10911.mp3" type="audio/mpeg">
+    <!-- fallback: some browsers block autoplay; user can press play -->
+  </audio>
+
+  <script>
+    /* ---------- simple interactive logic ---------- */
+    const bgAudio = document.getElementById('bgAudio');
+    const playBtn = document.getElementById('playBtn');
+    const heartsBtn = document.getElementById('heartsBtn');
+    const butterBtn = document.getElementById('butterBtn');
+    const floating = document.getElementById('floatingLayer');
+    const forAliceBtn = document.getElementById('forAliceBtn');
+    const downloadBtn = document.getElementById('downloadBtn');
+    const senderNameEl = document.getElementById('senderName');
+
+    // Default sender can be edited before download via prompt
+    let senderName = '';
+
+    // play/pause music
+    let audioPlaying = false;
+    playBtn.addEventListener('click', () => {
+      if(!audioPlaying){
+        bgAudio.play().catch(()=>{ /* autoplay may be blocked until user gesture */ });
+        audioPlaying = true;
+        playBtn.textContent = "⏸️ Stop Musik";
+      } else {
+        bgAudio.pause();
+        audioPlaying = false;
+        playBtn.textContent = "▶️ Putar Musik";
+      }
+    });
+
+    // utility: generate a floating emoji / image
+    function spawnFloating(content, opts = {}) {
+      const el = document.createElement('div');
+      el.className = 'float-item';
+      el.style.left = (opts.left ?? (10 + Math.random() * 80)) + '%';
+      el.style.bottom = (opts.bottom ?? '-20px');
+      const dur = (opts.duration ?? (4 + Math.random() * 4));
+      el.style.animationDuration = dur + 's';
+      if (opts.html) el.innerHTML = opts.html;
+      else el.textContent = content;
+      // random size
+      const size = opts.size ?? (24 + Math.random() * 46);
+      el.style.fontSize = size + 'px';
+      el.style.opacity = 0.95;
+      floating.appendChild(el);
+      setTimeout(()=> el.remove(), Math.max(6000, dur*1000 + 200));
+    }
+
+    // hearts
+    heartsBtn.addEventListener('click', () => {
+      for(let i=0;i<18;i++){
+        spawnFloating('💖',{ left: 8 + Math.random()*84, duration: 3 + Math.random()*4, size: 18 + Math.random()*48 });
+      }
+    });
+
+    // butterflies (gif)
+    const butterflyGifs = [
+      "https://media.tenor.com/ggK_EVE3kXMAAAAi/butterfly-flying.gif",
+      "https://media.tenor.com/4F0n0s0gq3IAAAAC/flying-butterfly.gif"
+    ];
+    butterBtn.addEventListener('click', () => {
+      for(let i=0;i<8;i++){
+        const imgHtml = `<img src="${butterflyGifs[Math.floor(Math.random()*butterflyGifs.length)]}" alt="butterfly" style="width:${40 + Math.random()*80}px;height:auto;border-radius:8px;display:block;">`;
+        spawnFloating('', { html: imgHtml, duration: 4 + Math.random()*5, size: 60, left: 6 + Math.random()*88 });
+      }
+    });
+
+    // when user clicks the main CTA for Alice
+    forAliceBtn.addEventListener('click', () => {
+      // small animation of hearts + gentle alert
+      for(let i=0;i<24;i++){
+        spawnFloating(['💘','💗','💕','💖'][Math.floor(Math.random()*4)], { duration: 3 + Math.random()*3, size: 16 + Math.random()*44 });
+      }
+      setTimeout(()=> {
+        try { window.navigator.vibrate?.(80); } catch(e){}
+        alert("Kalau elice memang be ho wa kesempatan liau gpp mien balas a ini last wa chat elice — semoga dia memberi kesempatan 💞 makasih ya");
+      }, 350);
+    });
+
+    // download: create a standalone HTML using current message & sender
+    downloadBtn.addEventListener('click', () => {
+      senderName = prompt("Masukkan namamu (yang akan tampil di 'Dari:'):", senderName || "Nama Kamu");
+      if(senderName !== null) {
+        senderNameEl.textContent = senderName;
+      } else {
+        // cancelled
+        return;
+      }
+
+      const pageTitle = document.title || 'Untuk Alice';
+      const toText = document.getElementById('toText').textContent || 'Untuk Alice';
+      const titleText = document.getElementById('titleText').textContent || 'Maafkan Aku';
+      const msgText = document.getElementById('msgText').textContent || '';
+      const html = generateStandaloneHTML({
+        pageTitle, toText, titleText, msgText, senderName
+      });
+
+      const blob = new Blob([html], {type: 'text/html'
